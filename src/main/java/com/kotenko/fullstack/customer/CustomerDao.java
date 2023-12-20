@@ -4,7 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CustomerDao {
-    List<Customer> selectAllCustomers();
+    List<Customer> fetchAllCustomers();
 
-    Optional<Customer> selectCustomerById(Integer id);
+    Optional<Customer> fetchCustomerById(Integer id);
+
+    Customer persistCustomer(Customer customer);
+
+    Customer updateCustomer(Customer customer);
+
+    void deleteCustomer(Integer id);
+
+    boolean customerWithEmailExists(String email);
+
+    boolean customerWithIdExists(Integer id);
 }

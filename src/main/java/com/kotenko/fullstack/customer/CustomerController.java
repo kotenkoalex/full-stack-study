@@ -1,9 +1,6 @@
 package com.kotenko.fullstack.customer;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,20 @@ public class CustomerController {
     @GetMapping("{id}")
     public Customer getCustomer(@PathVariable Integer id) {
         return service.getCustomer(id);
+    }
+
+    @PostMapping
+    public Customer persistCustomer(@RequestBody CustomerRequest request) {
+        return service.persitCustomer(request);
+    }
+
+    @PutMapping("{id}")
+    public Customer updateCustomer(@PathVariable Integer id, @RequestBody CustomerRequest request) {
+        return service.updateCustomer(id, request);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteCustomer(@PathVariable Integer id) {
+        service.deleteCustomer(id);
     }
 }
