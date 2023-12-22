@@ -20,6 +20,7 @@ public class Main {
         List<Customer> customers = List.of(
                 new Customer(1, "Alex", "alex@gmail.com", 21),
                 new Customer(2, "Jamila", "jamila@gmail.com", 18));
-        return args -> customerRepository.saveAll(customers);
+//        return args -> customerRepository.saveAll(customers);
+        return null;
     }
 }
