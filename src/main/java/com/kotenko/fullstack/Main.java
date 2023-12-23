@@ -1,5 +1,6 @@
 package com.kotenko.fullstack;
 
+import com.github.javafaker.Faker;
 import com.kotenko.fullstack.customer.Customer;
 import com.kotenko.fullstack.customer.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -17,10 +18,16 @@ public class Main {
 
     @Bean
     CommandLineRunner runner(CustomerRepository customerRepository) {
+        Faker faker = new Faker();
         List<Customer> customers = List.of(
-                new Customer(1, "Alex", "alex@gmail.com", 21),
-                new Customer(2, "Jamila", "jamila@gmail.com", 18));
-//        return args -> customerRepository.saveAll(customers);
-        return null;
+                new Customer(
+                        faker.name().firstName(),
+                        faker.internet().emailAddress(),
+                        faker.number().numberBetween(15, 75)),
+                new Customer(
+                        faker.name().firstName(),
+                        faker.internet().emailAddress(),
+                        faker.number().numberBetween(15, 75)));
+        return args -> customerRepository.saveAll(customers);
     }
 }
