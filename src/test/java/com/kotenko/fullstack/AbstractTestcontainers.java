@@ -1,5 +1,6 @@
 package com.kotenko.fullstack;
 
+import com.github.javafaker.Faker;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -47,7 +48,7 @@ public abstract class AbstractTestcontainers {
         );
     }
 
-    protected static DataSource getDataSource() {
+    private static DataSource getDataSource() {
         return DataSourceBuilder.create()
                 .driverClassName(postgreSQLContainer.getDriverClassName())
                 .url(postgreSQLContainer.getJdbcUrl())
@@ -59,4 +60,6 @@ public abstract class AbstractTestcontainers {
     protected static JdbcTemplate getJdbcTemplate() {
         return new JdbcTemplate(getDataSource());
     }
+
+    protected static final Faker FAKER = new Faker();
 }
