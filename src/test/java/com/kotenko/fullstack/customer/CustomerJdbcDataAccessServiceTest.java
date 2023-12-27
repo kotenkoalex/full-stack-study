@@ -113,14 +113,49 @@ class CustomerJdbcDataAccessServiceTest extends AbstractTestcontainers {
 
     @Test
     void deleteCustomer() {
-
+        String email = FAKER.internet().safeEmailAddress();
+        Customer customer = new Customer(
+                FAKER.name().firstName(),
+                email,
+                FAKER.number().numberBetween(10, 70)
+        );
+        underTest.persistCustomer(customer);
+        Integer id = underTest.fetchAllCustomers().stream()
+                .filter(it->it.getEmail().equals(email))
+                .map(Customer::getId)
+                .findFirst().orElseThrow();
+        underTest.deleteCustomer(id);
+        Optional<Customer> actual = underTest.fetchCustomerById(id);
+        assertThat(actual).isNotPresent();
     }
 
     @Test
     void customerWithEmailExists() {
+        String email = FAKER.internet().safeEmailAddress();
+        Customer customer = new Customer(
+                FAKER.name().firstName(),
+                email,
+                FAKER.number().numberBetween(10, 70)
+        );
+        underTest.persistCustomer(customer);
+        boolean actual = underTest.customerWithEmailExists(email);
+        assertThat(actual).isTrue();
     }
 
     @Test
     void customerWithIdExists() {
+        String email = FAKER.internet().safeEmailAddress();
+        Customer customer = new Customer(
+                FAKER.name().firstName(),
+                email,
+                FAKER.number().numberBetween(10, 70)
+        );
+        underTest.persistCustomer(customer);
+        Integer id = underTest.fetchAllCustomers().stream()
+                .filter(it->it.getEmail().equals(email))
+                .map(Customer::getId)
+                .findFirst().orElseThrow();
+        boolean actual = underTest.customerWithIdExists(id);
+        assertThat(actual).isTrue();
     }
 }
