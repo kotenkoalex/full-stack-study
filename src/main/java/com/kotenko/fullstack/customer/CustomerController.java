@@ -25,7 +25,7 @@ public class CustomerController {
 
     @PostMapping
     public Customer persistCustomer(@RequestBody CustomerRequest request) {
-        return service.persitCustomer(request);
+        return service.persistCustomer(request);
     }
 
     @PutMapping("{id}")
