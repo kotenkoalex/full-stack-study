@@ -25,7 +25,7 @@ public class CustomerService {
                 .orElseThrow(() -> new ResourceNotFoundException("customer with id: %s is not found".formatted(id)));
     }
 
-    public Customer persitCustomer(CustomerRequest request) {
+    public Customer persistCustomer(CustomerRequest request) {
         if (customerDao.customerWithEmailExists(request.getEmail())) {
             throw new DuplicateResourceException("customer with email: %s exists".formatted(request.getEmail()));
         }
