@@ -16,6 +16,19 @@ services:
       - db
     restart: unless-stopped
 
+  kotenko-api:
+    container_name: kotenko-api
+    image: kotenkoalex/kotenkoalex-api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/fullstack
+    ports:
+      - "8088:8080"
+    networks:
+      - db
+    depends_on:
+      - db
+    restart: unless-stopped
+
 networks:
   db:
     driver: bridge
