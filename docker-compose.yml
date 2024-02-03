@@ -5,7 +5,7 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: user
+      POSTGRES_USER: kotenko
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:

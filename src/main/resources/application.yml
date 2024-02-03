@@ -9,7 +9,7 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5532/fullstack
-    username: user
+    username: kotenko
     password: password
   jpa:
     hibernate:
