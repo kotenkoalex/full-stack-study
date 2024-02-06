@@ -18,7 +18,7 @@ services:
 
   kotenko-api:
     container_name: kotenko-api
-    image: kotenkoalex/kotenkoalex-api
+    image: kotenkoalex/kotenkoalex-api:1.0.1
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/fullstack
     ports:
