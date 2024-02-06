@@ -172,7 +172,7 @@
                     <to>
                         <image>docker.io/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
                         <tags>
-                            <tag>latest</tag>
+                            <tag>1.0.1</tag>
                         </tags>
                     </to>
                 </configuration>
