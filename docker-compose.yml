@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     container_name: postgres
-    image: postgres
+    image: postgres:alpine
     environment:
       POSTGRES_USER: kotenko
       POSTGRES_PASSWORD: password
@@ -18,7 +18,7 @@ services:
 
   kotenko-api:
     container_name: kotenko-api
-    image: kotenkoalex/kotenkoalex-api:1.0.1
+    image: kotenkoalex/kotenkoalex-api:latest
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/fullstack
     ports:
