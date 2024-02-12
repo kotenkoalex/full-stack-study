@@ -1,0 +1,38 @@
+name: CI - Build Backend
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - backend/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:alpine
+        env:
+          POSTGRES_USER: kotenko
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: fullstack
+        ports:
+          - 5534:5432
+        options:
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    defaults:
+      run:
+        working-directory: ./full-stack-study
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: Build and run Unit/Integration Tests with Maven
+        run: mvn -ntp -B verify
